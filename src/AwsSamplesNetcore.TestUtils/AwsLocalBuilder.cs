@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace AwsSamplesNetcore.S3.Crud.ConsoleApp
+namespace AwsSamplesNetcore.TestUtils
 {
     public class AwsLocalBuilder
     {

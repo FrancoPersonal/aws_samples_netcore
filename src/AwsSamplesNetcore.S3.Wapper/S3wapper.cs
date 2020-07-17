@@ -7,9 +7,9 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AwsSamplesNetcore.S3.Crud.ConsoleApp
+namespace AwsSamplesNetcore.S3.Wapper
 {
-    class S3wapper
+    public class S3wapper
     {
         IAmazonS3 client;
         public S3wapper(IAmazonS3 client)
@@ -22,7 +22,11 @@ namespace AwsSamplesNetcore.S3.Crud.ConsoleApp
             var buckets = await client.ListBucketsAsync();
             return buckets.Buckets.Select(b => b.BucketName);
         }
-
+        public async Task<HttpStatusCode> PutBucketAsync(string bucketName)
+        {
+            var response = await client.PutBucketAsync(bucketName);
+            return response.HttpStatusCode;
+        }
 
 
         public async Task<IEnumerable<string>> ListObjectsAsync(string bucketName)
@@ -51,11 +55,12 @@ namespace AwsSamplesNetcore.S3.Crud.ConsoleApp
             return objs.HttpStatusCode;
         }
 
-        public async Task<HttpStatusCode> DeleteObjectsAsync(string bucketName, List<string> keys)
+        public async Task<HttpStatusCode> DeleteObjectsAsync(string bucketName, IEnumerable<string> keys)
         {
             DeleteObjectsRequest request = new DeleteObjectsRequest()
             {
-                BucketName = bucketName,                
+                BucketName = bucketName,
+                Quiet = true,
                 Objects = keys.Select(k => new KeyVersion() { Key = k }).ToList()
             };
 
