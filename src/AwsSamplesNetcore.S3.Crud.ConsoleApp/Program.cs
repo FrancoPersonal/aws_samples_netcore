@@ -55,9 +55,6 @@ namespace AwsSamplesNetcore.S3.Crud.ConsoleApp
                         Console.WriteLine($"all file deleted {result}");
                     }
                 });
-
-
-
             Console.ReadKey();
         }
     }
