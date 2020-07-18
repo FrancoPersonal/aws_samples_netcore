@@ -21,7 +21,7 @@ namespace DeleteS3ByPrefix.ConsoleApp
             var listobjects = config.GetSection("filesToDelete").Get<string[]>();
 
             Console.WriteLine("Hello World!");
-            const string bucketname = "test-bucket";
+            string bucketname = config.GetSection("bucketname").Get<string>(); 
           //  List<string> listobjects = new List<string>() { "fileNameTest1.txt", "fileNameTest2.txt", "fileNameTest3.txt" };
 
 
