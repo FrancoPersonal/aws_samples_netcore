@@ -1,2 +1,2 @@
-set localstackUrl=http://localhost:4566
+set localstackUrl=http://localhost:4572
 set localstackBucket=localstack-deployment-bucket

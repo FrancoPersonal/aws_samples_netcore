@@ -1,3 +1,3 @@
 cd ../../%appFolder%
-call serverless deploy --stage local
+call serverless deploy --verbose --stage local
 cd ../infra/local
