@@ -7,3 +7,7 @@ sls create --template aws-csharp --path AwsSamplesNeyCore.Serverless.Basic
 ```
 https://www.serverless.com/framework/docs/providers/aws/examples/hello-world/csharp/
 
+
+
+aws lambda invoke \
+    --function-name my-function
