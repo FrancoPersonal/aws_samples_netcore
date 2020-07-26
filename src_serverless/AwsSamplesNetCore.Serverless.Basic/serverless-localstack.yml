@@ -1,0 +1,20 @@
+service: awssamplesneycore.serverless.basic
+
+plugins:
+  - serverless-localstack
+
+provider:
+  deploymentBucket:
+    name: ${env:localstackBucket}
+  name: aws
+  runtime: dotnetcore2.1
+
+
+package:
+  individually: true
+
+functions:
+  hello:
+    handler: CsharpHandlers::AwsDotnetCsharp.Handler::Hello
+    package:
+      artifact: bin/release/netcoreapp2.1/hello.zip
