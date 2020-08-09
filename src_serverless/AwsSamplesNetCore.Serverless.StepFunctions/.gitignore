@@ -20,8 +20,7 @@ x86/
 bld/
 [Bb]in/
 [Oo]bj/
-
-# serverless directory
+node_modules/
 .serverless/
 
 # Visual Studio 2015 cache/options directory

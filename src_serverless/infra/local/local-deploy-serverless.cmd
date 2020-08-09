@@ -1,4 +1,5 @@
 call local-configure-environment.cmd || goto :error
+echo "creating infra"
 call local-create-infra.cmd
 call local-initial.cmd || goto :error
 echo "Building and packaging lambda..."

@@ -1,6 +1,6 @@
 cd ../../%appFolder%
-call npm init --yes
-call npm install -g serverless-localstack
-call npm install -D serverless-plugin-typescript typescript
+::call npm init -y
+call npm install
+call npm install --save-dev serverless-localstack
 call serverless deploy --noDeploy --stage local
 cd ../infra/local

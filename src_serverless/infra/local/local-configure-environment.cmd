@@ -1,2 +1,3 @@
-set localstackUrl=http://localhost:4572
-set localstackBucket=localstack-deployment-bucket
+SET localstackUrl=http://localhost:4566
+SET localstackBucket=localstack-deployment-bucket
+SET SLS_DEBUG=*
