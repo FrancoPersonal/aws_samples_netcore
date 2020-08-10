@@ -12,7 +12,7 @@ namespace AwsDotnetCsharp
         /// <summary>
         /// Gets or sets the Code.
         /// </summary>
-        internal int Code { get; set; }
+        public int Code { get; set; }
 
         /// <summary>
         /// Gets or sets the Message.

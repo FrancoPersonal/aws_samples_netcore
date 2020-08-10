@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AwsDotnetCsharp
+﻿namespace AwsDotnetCsharp
 {
     /// <summary>
     /// Defines the <see cref="Request" />.
@@ -25,11 +21,8 @@ namespace AwsDotnetCsharp
         public string Key3 { get; set; }
 
         /// <summary>
-        /// Gets or sets the Key3.
+        /// Gets or sets the Code.
         /// </summary>
-        public int
-            Code
-        { get; set; }
-
+        public int Code { get; set; }
     }
 }

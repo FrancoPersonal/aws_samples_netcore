@@ -1,0 +1,36 @@
+stateMachines:
+  testStepFunction:
+    name: testStepFunction-${self:custom.service_name}-${opt:stage} 
+    definition:
+      StartAt: ImportState
+      States:
+        ImportState:
+          Type: Task
+          Resource:  
+            Fn::GetAtt: [hello, Arn]
+          Next: CheckResults
+          Catch:
+          - ErrorEquals:
+            - States.ALL
+            Next: FailState
+        CheckResults:
+          Type: Choice
+          Choices:
+          - And:
+            - Variable: "$.Code"
+              NumericEquals: 0
+            - Variable: "$.Results.Finished"
+              BooleanEquals: false
+            Next: ImportState
+          - And:
+            - Variable: "$.Code"
+              NumericEquals: 0
+            - Variable: "$.Results.Finished"
+              BooleanEquals: true
+            Next: SuccessState
+          Default: FailState
+        SuccessState:
+          Type: Succeed
+        FailState:
+          Type: Fail
+          Cause: "$.Results.Errors"
