@@ -37,15 +37,63 @@ stepFunctions:
     testStepFunction:
       name: testStepFunction-${self:custom.service_name}-${opt:stage} 
       definition:
-        StartAt: Hellocase
+        StartAt: ImportState
         States:
-          Hellocase:
+          ImportState:
             Type: Task
-            Resource:
+            Resource:  
               Fn::GetAtt: [hello, Arn]
-            Next: WriteS3
-          WriteS3:
-            Type: Task
-            Resource:
-              Fn::GetAtt: [startTimer, Arn]
-            End: true
+            Next: CheckResults
+          CheckResults:
+            Type: Choice
+            Choices:
+            - And:
+              - Variable: "$.Code"
+                NumericEquals: 0
+              - Variable: "$.Results.Finished"
+                BooleanEquals: false
+              Next: ImportState
+            - And:
+              - Variable: "$.Code"
+                NumericEquals: 0
+              - Variable: "$.Results.Finished"
+                BooleanEquals: true
+              Next: SuccessState
+            Default: FailState
+          SuccessState:
+            Type: Succeed
+           # End: true
+          FailState:
+            Type: Fail
+            Cause: "$.Results.Errors"
+#
+#            
+#        States:
+#          ImportState:
+#            Type: Task
+#            Resource:
+#              Fn::GetAtt: [hello, Arn]
+#            Next: CheckResults
+#          CheckResultsState:
+#            Type: Choice
+#            Choices:
+#              And: 
+#              - Variable: "$.code"
+#                NumericEquals: 0                
+#              - Variable: "$.foo"
+#                BooleanEquals: false
+#              Next: ImportState
+#              
+#            Default: DefaultStateState  
+#          WriteS3State:
+#            Type: Task
+#            Resource:
+#              Fn::GetAtt: [startTimer, Arn]
+#            End: true
+#          DefaultStateState:
+#            Type: Fail
+#            Cause: "No Matches!"
+#
+#           
+#
+#
