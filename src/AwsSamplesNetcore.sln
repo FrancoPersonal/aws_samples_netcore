@@ -5,17 +5,19 @@ VisualStudioVersion = 16.0.30225.117
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AwsSamplesNetcore.S3.Crud.ConsoleApp", "AwsSamplesNetcore.S3.Crud.ConsoleApp\AwsSamplesNetcore.S3.Crud.ConsoleApp.csproj", "{6C2309C5-1E86-4C70-960A-E491847D9E5C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeleteS3ByPrefix.ConsoleApp", "DeleteS3ByPrefix.ConsoleApp\DeleteS3ByPrefix.ConsoleApp.csproj", "{FE6DA65A-16DC-46CC-BBF2-1B9BDDC3B312}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeleteS3ByPrefix.ConsoleApp", "DeleteS3ByPrefix.ConsoleApp\DeleteS3ByPrefix.ConsoleApp.csproj", "{FE6DA65A-16DC-46CC-BBF2-1B9BDDC3B312}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AwsSamplesNetcore.S3.Wapper", "AwsSamplesNetcore.S3.Wapper\AwsSamplesNetcore.S3.Wapper.csproj", "{CCD8890B-9ADE-4647-B001-16F822EF6E70}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AwsSamplesNetcore.S3.Wapper", "AwsSamplesNetcore.S3.Wapper\AwsSamplesNetcore.S3.Wapper.csproj", "{CCD8890B-9ADE-4647-B001-16F822EF6E70}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Util", "Util", "{BBFC1467-5B1B-480E-A158-3911A43B55B7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "S3", "S3", "{BF528A33-94BB-45E9-9BDA-01D91FFD3834}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AwsSamplesNetcore.TestUtils", "AwsSamplesNetcore.TestUtils\AwsSamplesNetcore.TestUtils.csproj", "{35D158E5-E354-4D1B-AFC8-8CA5F8321870}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AwsSamplesNetcore.TestUtils", "AwsSamplesNetcore.TestUtils\AwsSamplesNetcore.TestUtils.csproj", "{35D158E5-E354-4D1B-AFC8-8CA5F8321870}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tools.Configuration", "Tools.Configuration\Tools.Configuration.csproj", "{41F0CBA6-759F-43D1-8C0B-1CB33E87F204}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "serverless", "serverless", "{6203209B-93DF-4EA1-95BC-F8F49C3F1DA4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

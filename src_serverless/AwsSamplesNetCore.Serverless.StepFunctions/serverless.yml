@@ -1,0 +1,106 @@
+service: ${self:custom.service_name}
+
+plugins:
+  - serverless-offline
+  - serverless-step-functions  
+  - serverless-pseudo-parameters
+
+provider:
+  name: aws
+  runtime: dotnetcore3.1
+  role: ${self:custom.role}
+ # cfnRole: ${self:custom.cfnRole}
+  stage: ${self:custom.stage}
+  region: us-east-1
+  environment:
+    ACCOUNT_ID : ${self:custom.cfnRole}
+    role: ${self:custom.role}
+
+package:
+  individually: true
+  
+custom:
+  ${file(parameters.yml)}
+
+functions:
+  hello:
+    handler: CsharpHandlers::AwsDotnetCsharp.Handler::Hello
+    package:
+      artifact: bin/Release/netcoreapp3.1/hello.zip
+  startTimer:
+    handler: CsharpHandlers::AwsDotnetCsharp.Handler::StartTimer
+    package:
+      artifact: bin/Release/netcoreapp3.1/hello.zip
+
+stepFunctions:
+  ${file(state_machines.yml)}
+#  stateMachines:
+#    testStepFunction:
+#      name: testStepFunction-${self:custom.service_name}-${opt:stage} 
+#      definition:
+#        StartAt: ImportState
+#        States:
+#          ImportState:
+#            Type: Task
+#            Resource:  
+#              Fn::GetAtt: [hello, Arn]
+#            Next: CheckResults
+#            Catch:
+#            - ErrorEquals:
+#              - States.ALL
+#              Next: FailState
+#          CheckResults:
+#            Type: Choice
+#            Choices:
+#            - And:
+#              - Variable: "$.Code"
+#                NumericEquals: 0
+#              - Variable: "$.Results.Finished"
+#                BooleanEquals: false
+#              Next: ImportState
+#            - And:
+#              - Variable: "$.Code"
+#                NumericEquals: 0
+#              - Variable: "$.Results.Finished"
+#                BooleanEquals: true
+#              Next: SuccessState
+#            Default: FailState
+#          SuccessState:
+#            Type: Succeed
+#          FailState:
+#            Type: Fail
+#            Cause: "$.Results.Errors"
+
+
+
+#
+#            
+#        States:
+#          ImportState:
+#            Type: Task
+#            Resource:
+#              Fn::GetAtt: [hello, Arn]
+#            Next: CheckResults
+#          CheckResultsState:
+#            Type: Choice
+#            Choices:
+#              And: 
+#              - Variable: "$.code"
+#                NumericEquals: 0                
+#              - Variable: "$.foo"
+#                BooleanEquals: false
+#              Next: ImportState
+#              
+#            Default: DefaultStateState  
+#          WriteS3State:
+#            Type: Task
+#            Resource:
+#              Fn::GetAtt: [startTimer, Arn]
+#            End: true
+#          DefaultStateState:
+#            Type: Fail
+#            Cause: "No Matches!"
+#
+#           
+#
+#

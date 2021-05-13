@@ -1,0 +1,36 @@
+service: awssamplesneycore-serverless-apigateway
+
+plugins:
+  - serverless-localstack
+
+custom:
+  localstack:
+    stages:
+      - local
+    autostart: true
+    lambda:
+      mountCode: False
+    docker:
+      sudo: False
+
+provider:
+  deploymentBucket:
+    name: ${env:localstackBucket}
+  name: aws
+  runtime: dotnetcore2.1
+  apiKeys:
+    - aws-examples-csharp-api-key
+
+
+package:
+  individually: true
+
+functions:
+  hello:
+    handler: CsharpHandlers::AwsDotnetCsharp.Handler::Hello
+    package:
+      artifact: bin/release/netcoreapp2.1/hello.zip
+    events:
+      - http:
+          path: hello
+          method: get
